@@ -67,7 +67,7 @@ patch '/users/:id' do
   @user.fname = params[:fname]
   @user.lname = params[:lname]
   @user.email = params[:email]
-
+  @user.save
   redirect '/users/' + params[:id]
 end
 
@@ -77,4 +77,68 @@ end
 delete '/users/:id' do
   User.find(params[:id]).destroy
   redirect '/users'
+end
+
+#
+# Get movie
+#
+get '/movies' do
+  @movies = Movie.all
+  erb :"movies/index"
+end
+
+#
+# Show form for creating new movie
+#
+get '/movies/new' do
+  erb :"movies/new"
+end
+
+#
+# Show single movie
+#
+get '/movies/:id' do
+  @movie = Movie.find(params[:id])
+  erb :"movies/show"
+end
+
+#
+# Show form for editing movie
+#
+get '/movies/:id/edit' do
+  @movie = Movie.find(params[:id])
+  erb :"movies/edit"
+end
+
+#
+# Delete movie
+#
+delete '/movies/:id' do
+  Movie.find(params[:id]).destroy
+  redirect '/movies'
+end
+
+#
+# Create movie
+#
+post '/movies' do
+  Movie.create(
+    title: params[:title],
+    year: params[:year],
+    rating: params[:rating]
+  )
+
+  redirect '/movies'
+end
+
+#
+# Update movie
+#
+patch '/movies/:id' do
+  @movie = Movie.find(params[:id])
+  @movie.title = params[:title]
+  @movie.year = params[:year]
+  @movie.rating = params[:rating]
+  @movie.save
+  redirect '/movies/' + params[:id]
 end

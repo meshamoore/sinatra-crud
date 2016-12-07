@@ -1,0 +1,20 @@
+<h1>Edit Movie</h1>
+<form action="/movies/<%= @movie.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH" />
+    <label>Title</label>
+    <input type="text" name="title" value="<%= @movie.title %>">
+    <br />
+
+    <label>Year</label>
+    <input type="text" name="year" value="<%= @movie.year %>">
+    <br />
+
+    <label>Rating</label>
+    <input type="text" name="rating" value="<%= @movie.rating %>">
+
+    <br />
+
+    <input type="submit">
+</form>
+
+<a href="/movies">Movies Index</a>

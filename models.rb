@@ -3,3 +3,6 @@ class User < ActiveRecord::Base
     fname + ' ' + lname
   end
 end
+
+class Movie < ActiveRecord::Base
+end
